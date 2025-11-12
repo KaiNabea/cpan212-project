@@ -1,0 +1,32 @@
+[
+    {
+        "title": "The Avengers",
+        "genre": "Action",
+        "release_date": "05-04-2012",
+        "rating": 8.0
+    },
+    {
+        "title": "Wind River",
+        "genre": "Thriller",
+        "release_date": "01-21-2017",
+        "rating": 7.7
+    },
+    {
+        "title": "Yes Man",
+        "genre": "Comedy",
+        "release_date": "12-19-2008",
+        "rating": 6.8
+    },
+    {
+        "title": "Knives Out",
+        "genre": "Mystery",
+        "release_date": "11-27-2019",
+        "rating": 7.9
+    },
+    {
+        "title": "Erin Brockovich",
+        "genre": "Drama",
+        "release_date": "03-14-2000",
+        "rating": 7.5
+    }
+]
