@@ -1,0 +1,27 @@
+[
+    {
+        "film": "The Avengers",
+        "rating": 4,
+        "review": ""
+    },
+    {
+        "film": "Wind River",
+        "rating": 5,
+        "review": ""
+    },
+    {
+        "film": "Yes Man",
+        "rating": 3,
+        "review": ""
+    },
+    {
+        "film": "Knives Out",
+        "rating": 5,
+        "review": ""
+    },
+    {
+        "film": "Erin Brockovich",
+        "rating": 3,
+        "review": ""
+    }
+]
