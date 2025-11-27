@@ -23,7 +23,7 @@ export const addFilms = async(filmData) => {
         body: JSON.stringify(filmData)
     })
     if (!response.ok) {
-        throw new Error ("Failed to fetch films.")
+        throw new Error ("Failed to add film.")
     }
     return response.json()
 }
