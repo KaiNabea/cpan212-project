@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {encodePassword} = require("../../shared/password-utils")
+const { encodePassword } = require("../../shared/password-utils");
 
 const userSchema = new mongoose.Schema(
   {
@@ -8,7 +8,13 @@ const userSchema = new mongoose.Schema(
     phone: { type: String },
     password: { type: String, required: true },
     address: String,
-    createdAt: { type: Date, default: Date.now() },
+    createdAt: { type: Date, default: Date.now },
+    roles: {
+      type: String,
+      required: true,
+      enum: ["admin", "client"],
+      default: "client"
+    }
   },
   { versionKey: false }
 );
@@ -26,6 +32,6 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-const UserModel = mongoose.model("users", userSchema);
+const UserModel = mongoose.model("User", userSchema);
 
 module.exports = UserModel;

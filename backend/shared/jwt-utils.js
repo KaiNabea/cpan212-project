@@ -4,10 +4,13 @@ const secret = process.env.TOKEN_SECRET;
 const expiresIn = {expiresIn: "1h"};
 
 const decodeToken = (token) => {
-    if(!token) return
-    const splitedToken = token.split(" ")[1]
-    const decodedData = jwt.verify(splitedToken, secret)
-    return decodedData
+    if(!token) return null
+    try {
+        const decodedData = jwt.verify(token, secret)
+        return decodedData
+    } catch (err) {
+        return null
+    }
 };
 
 const encodeToken = (payload) => {
