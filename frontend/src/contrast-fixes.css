@@ -1,0 +1,245 @@
+/* ============================================
+   CONTRAST AND VISIBILITY IMPROVEMENTS
+   Add these to your existing CSS files
+   ============================================ */
+
+/* WATCHLIST PAGE - Make text always visible */
+.watchlist-card {
+  background: white !important; /* Keep cards white, not gradient */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  /* Remove any background color change on hover */
+  background: white !important;
+}
+
+.watchlist-card h3 {
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  color: #667eea; /* Always visible blue */
+}
+
+.watchlist-card h3:hover {
+  color: #5568d3; /* Slightly darker on hover */
+  text-decoration: underline;
+}
+
+.watchlist-card p {
+  color: #333; /* Dark text instead of gray */
+  margin: 8px 0;
+}
+
+/* MAIN PAGE - Search Results Dropdown */
+.search-results-dropdown li {
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px solid #e0e0e0;
+  background: white; /* Always white background */
+  color: #333; /* Always dark text */
+}
+
+.search-results-dropdown li:hover {
+  background: #f0f4ff; /* Light blue instead of gradient */
+  color: #667eea; /* Blue text on hover */
+  transform: translateX(5px);
+  border-left: 4px solid #667eea; /* Add left border indicator */
+}
+
+/* PROFILE PAGE - Watchlist Cards */
+.watchlist-card-profile {
+  background: white !important;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.watchlist-card-profile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: white !important;
+}
+
+.watchlist-title-link {
+  margin: 0;
+  color: #667eea !important;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.watchlist-title-link:hover {
+  color: #5568d3 !important;
+  text-decoration: underline;
+}
+
+/* FILMS PAGE - Review Cards */
+.review-card {
+  background: white !important;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #667eea;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  background: white !important;
+}
+
+.review-card > p {
+  color: #333 !important; /* Always dark text */
+}
+
+.review-card > p:first-child {
+  font-weight: 600;
+  color: #667eea !important;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* WATCHLIST DETAIL PAGE - Film Cards */
+.film-card {
+  background: white !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.film-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: white !important;
+}
+
+.film-card h3 {
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  color: #667eea !important;
+}
+
+.film-card h3:hover {
+  color: #5568d3 !important;
+  text-decoration: underline;
+}
+
+.film-card p {
+  color: #333 !important;
+  margin: 5px 0;
+}
+
+/* GENERAL TEXT IMPROVEMENTS */
+body {
+  color: #333; /* Ensure base text is always dark */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333 !important; /* All headings dark by default */
+}
+
+/* Override any gradient text */
+* {
+  -webkit-text-fill-color: initial;
+}
+
+/* Ensure buttons have good contrast */
+button {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Links should be visible */
+a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #5568d3;
+  text-decoration: underline;
+}
+
+/* Modal improvements */
+.modal-content {
+  background: white !important;
+  color: #333 !important;
+}
+
+.watchlist-option {
+  background: #f8f9fa !important;
+  color: #333 !important;
+}
+
+.watchlist-option:hover {
+  background: #e9ecef !important;
+  border-left: 4px solid #667eea;
+}
+
+.watchlist-option h3 {
+  color: #333 !important;
+}
+
+.watchlist-option p {
+  color: #666 !important;
+}
+
+/* Stats cards - ensure text is visible */
+.stat-card h3 {
+  color: #667eea !important;
+}
+
+.stat-card p {
+  color: #666 !important;
+}
+
+/* Navigation improvements */
+nav a {
+  color: inherit;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background: rgba(102, 126, 234, 0.1);
+  text-decoration: none;
+}
+
+/* Form labels */
+label {
+  color: #333 !important;
+  font-weight: 600;
+}
+
+/* Info items */
+.info-item label {
+  color: #666 !important;
+}
+
+.info-item p {
+  color: #333 !important;
+}

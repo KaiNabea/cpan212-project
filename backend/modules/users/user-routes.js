@@ -9,7 +9,7 @@ const authorize = require("../../shared/middlewares/authorize");
 const verifyLoginRules = require("./middlewares/verify-login-rules");
 const { randomNumberOfNDigits } = require("../../shared/compute-utils.js")
 const OTPModel = require("./otp-model.js")
-const sendEmail = require("../../shared/email-utils.js")
+const sendEmail = require("../../shared/send-utils.js")
 
 const usersRoute = Router();
 
@@ -20,13 +20,13 @@ usersRoute.post("/login", loginRules, async (req, res) => {
   const { email, password } = req.body;
   const foundUser = await UserModel.findOne({ email });
   if (!foundUser) {
-    return res.status(404).send({
+    return res.status(404).json({
       errorMessage: `User with ${email} doesn't exist`,
     });
   }
   const passwordMatched = matchPassword(password, foundUser.password);
   if (!passwordMatched) {
-    return res.status(401).send({
+    return res.status(401).json({
       errorMessage: `Email and password didn't matched`,
     });
   }
@@ -56,14 +56,14 @@ usersRoute.post(
       const {email, otp} = req.body
       const foundUser = await UserModel.findOne({email})
       if (!foundUser) {
-        return res.status(404).send("Error: Email does not exist")
+        return res.status(404).json({error_message: "Error: Email does not exist"})
       }
       const savedOTP = await OTPModel.findOne({account: foundUser._id})
       if (!savedOTP) {
-        return res.status(400).send("Error: Cannot find OTP. Please generate a new one.")
+        return res.status(400).json({error_message: "Error: Cannot find OTP. Please generate a new one."})
       }
       if (savedOTP.otp !== Number(otp)) {
-        return res.status(400).send("Error: OTP entered invalid. Cannot verify user.")
+        return res.status(400).json({error_message: "Error: OTP entered invalid. Cannot verify user."})
       }
       const user = {...foundUser.toJSON(), password: undefined}
       const token = encodeToken(user)
@@ -93,7 +93,7 @@ usersRoute.post("/register", registerRules, async (req, res) => {
   }
   const addedUser = await UserModel.create(newUser);
   if (!addedUser) {
-    return res.status(500).send({
+    return res.status(500).json({
       errorMessage: `Oops! User couldn't be added!`,
     });
   }

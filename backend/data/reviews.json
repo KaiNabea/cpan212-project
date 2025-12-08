@@ -1,26 +1,31 @@
 [
     {
         "film": "The Avengers",
+        "user": "69322d00203b213fd9d264e6",
         "rating": 8,
         "review": "A blockbuster that brings these wildly different characters together and pulls it off with confidence and ease. I imagine copycats will be borrowing a lot from this movie in the near future."
     },
     {
         "film": "Wind River",
+        "user": "693230e96f82ec6ec995f4ed",
         "rating": 10,
         "review": "A haunting picture detailing reservation life as well as a geniuine neo-noir case that unravels a conspiracy taking place in the isolated land. A thrilling watch if one enjoys a little grit in their entertainment."
     },
     {
         "film": "Yes Man",
+        "user": "69322d00203b213fd9d264e6",
         "rating": 6,
         "review": "A breezy comedy where the word yes starts off as a curse before slowly morphing into a blessing in disguise. While one will have fun with this, it's hard to feel like the message of the movie, \"don't be afraid to take risks\", is undercut by the film itself playing it a little safe."
     },
     {
         "film": "Knives Out",
+        "user": "693230e96f82ec6ec995f4ed",
         "rating": 9,
         "review": "Bringing back whoddunits in a big way, Knives Out suprises by acting like it's showing you it's hand and having everything in clear sight before revealing that the real trick was hidden up it's sleave. A must-see for all detective-hobbyists!"
     },
     {
         "film": "Erin Brockovich",
+        "user": "69322d00203b213fd9d264e6",
         "rating": 7,
         "review": "Based on a true story, Julia Roberts marvels as a woman on a quest. Not for revenge nor for pride, but for justice and standing up for those who can't stand up for themselves. A geniuine story told as honestly as possible."
     }

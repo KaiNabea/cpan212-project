@@ -1,0 +1,253 @@
+/* Film Detail Page */
+.film-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Film Header Section */
+.film-detail-container > h1 {
+  font-size: 42px;
+  margin: 0 0 20px 0;
+  color: #333;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.film-detail-container > p {
+  font-size: 18px;
+  color: #666;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.film-detail-container > p strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Film Actions */
+.film-actions {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.review-button,
+.add-to-watchlist-button {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.review-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.add-to-watchlist-button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.review-button:hover,
+.add-to-watchlist-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-button:active,
+.add-to-watchlist-button:active {
+  transform: translateY(0);
+}
+
+/* Reviews Section */
+.film-detail-container > h2 {
+  font-size: 32px;
+  margin: 50px 0 25px 0;
+  color: #333;
+  font-weight: 700;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.review-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.review-card > p {
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.review-card > p:first-child {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.review-card > p strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.review-card > p:nth-child(2) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFD700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  width: fit-content;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.review-card > p:nth-child(3) {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+.review-card > p:last-child {
+  color: #999;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Empty State */
+.reviews-list > p {
+  text-align: center;
+  color: #999;
+  padding: 60px 20px;
+  background: white;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 24px;
+  color: #667eea;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Error State */
+.error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 20px;
+  color: #c62828;
+  background: #ffebee;
+  border-radius: 12px;
+  border-left: 4px solid #c62828;
+  margin: 40px auto;
+  max-width: 600px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .film-detail-container {
+    padding: 30px 15px;
+  }
+
+  .film-detail-container > h1 {
+    font-size: 32px;
+  }
+
+  .film-detail-container > h2 {
+    font-size: 26px;
+  }
+
+  .film-actions {
+    flex-direction: column;
+  }
+
+  .review-button,
+  .add-to-watchlist-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .review-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .film-detail-container > h1 {
+    font-size: 26px;
+  }
+
+  .film-detail-container > p {
+    font-size: 16px;
+  }
+
+  .review-card > p:first-child {
+    font-size: 16px;
+  }
+}

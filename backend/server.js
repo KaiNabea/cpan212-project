@@ -6,6 +6,7 @@ const connectDB = require("./shared/middlewares/connect-db")
 const { filmRoutes } = require("./modules/films/film-routes")
 const { usersRoute } = require("./modules/users/user-routes")
 const { reviewRoutes } = require("./modules/reviews/review-routes")
+const { watchlistRoutes } = require("./modules/watchlist/watchlist-routes")
 const app = express()
 
 const HOST = "localhost"
@@ -22,9 +23,10 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(connectDB)
 
-app.use(filmRoutes)
+app.use("/", filmRoutes)
 app.use("/users", usersRoute)
 app.use("/reviews", reviewRoutes)
+app.use("/watchlists", watchlistRoutes)
 
 app.use((error, req, res, next) => {
     console.log(error)

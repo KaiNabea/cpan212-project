@@ -1,3 +1,177 @@
-nav a {
-    margin-right: 8px
+/* Navbar Container */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Inner layout */
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navbar-brand span {
+  opacity: 0.9;
+}
+
+/* Nav links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f5f5ff;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.navbar-link:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+  width: 100%;
+}
+
+/* Right side actions (e.g., buttons) */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Primary button (e.g., Login) */
+.navbar-button-primary {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #667eea;
+  background-color: #ffffff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.navbar-button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+  background-color: #f3f3ff;
+}
+
+.navbar-button-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Ghost button (e.g., Register) */
+.navbar-button-ghost {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.navbar-button-ghost:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Mobile layout */
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+  color: #ffffff;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+/* Simple hamburger icon */
+.navbar-toggle-line {
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 999px;
+  margin: 3px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 10px 16px;
+  }
+
+  .navbar-links,
+  .navbar-actions {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  /* Optional: open state class if you manage it in React */
+  .navbar.open .navbar-links,
+  .navbar.open .navbar-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 12px;
+  }
+
+  .navbar.open .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

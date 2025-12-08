@@ -3,12 +3,10 @@ const checkValidation = require("../../../shared/middlewares/check-validation");
 
 const addReviewRules = [
   body("film")
-    .isString()
-    .withMessage("Film must be a string")
-    .isLength({ min: 1 })
-    .withMessage("Film must be at least 1 characters long")
     .notEmpty()
-    .withMessage("Film is required"),
+    .withMessage("Film ID is required")
+    .isMongoId()
+    .withMessage("Invalid Film ID format."),
 
   body("rating")
     .isFloat({gt: 0.0})

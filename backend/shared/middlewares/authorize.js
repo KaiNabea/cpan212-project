@@ -36,7 +36,7 @@ function authorize(requiredRoles = []) {
             : "Invalid token.",
       });
     }
-    req.user = decoded;
+    req.user = decoded.user || decoded;
     const userRoles = req.user.roles || []; 
     const hasRequiredRole = requiredRoles.some(role => userRoles.includes(role));
     if (requiredRoles.length > 0 && !hasRequiredRole) {

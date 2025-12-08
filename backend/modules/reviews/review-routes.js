@@ -1,8 +1,8 @@
 const { Router } = require("express")
 const addReviewRules = require("./middleware/create-review-rules")
 const updateReviewRules = require("./middleware/update-review-rules")
-const authorize = require("../../shared/middlewares/authorize")
 const ReviewModel = require("./review-model")
+const authorize = require("../../shared/middlewares/authorize")
 
 const reviewRoutes = Router()
 
@@ -28,6 +28,7 @@ reviewRoutes.get("/", async (req, res) => {
     skip: (page - 1) * limit,
     sort: { [sort_by]: sort_order },
   })
+  .populate("user", "name")
   res.json({
     count,
     page,
@@ -36,32 +37,45 @@ reviewRoutes.get("/", async (req, res) => {
   })
 })
 
-reviewRoutes.post("/", authorize, addReviewRules, async (req, res) => {
-    const userID = req.user._id;
-    const newReview = req.body;
-    const existingReview = await ReviewModel.findOne({ 
-        film: newReview.film, 
-        user: userID 
-    });
+reviewRoutes.get("/:id", authorize(["admin", "client"]), async (req, res) => {
+    try {
+        const reviewID = req.params.id;
+        const foundReview = await ReviewModel.findById(reviewID)
+            .populate("user", "name")
+        if (!foundReview) {
+            return res.status(404).send("Review not found.")
+        }
+        res.json(foundReview)
+    } catch (error) {
+        console.error("Error fetching single review:", error)
+        res.status(500).send("Internal server error.")
+    }
+})
+
+reviewRoutes.post("/", authorize(["admin", "client"]), addReviewRules, async (req, res) => {
+    const { film, rating, review } = req.body
+    const userID = req.user._id || req.user.id || req.user.user._id
+    const existingReview = await ReviewModel.findOne({ film, user: userID })
     if (existingReview) {
-        return res.status(409).send(`Error: User has already reviewed this film.`);
+        return res.status(409).send(`Error: User has already reviewed this film.`)
     }
     const addedReview = await ReviewModel.create({
         user: userID,
-        film: newReview.film,
-        rating: newReview.rating,
-        review: newReview.review
-    });
-    res.json(addedReview);
-});
+        film,
+        rating,
+        review,
+    })
+    res.json(addedReview)
+})
 
 
-reviewRoutes.put("/:id", authorize, updateReviewRules, async (req, res) => {
+reviewRoutes.put("/:id", authorize(["admin", "client"]), updateReviewRules, async (req, res) => {
     const reviewID = req.params.id;
-    const newReview = req.body;
+    const newReview = req.body
+    const userID = req.user._id || req.user.id || req.user.user._id
     const foundReview = await ReviewModel.findOne({ 
         _id: reviewID, 
-        user: req.user._id 
+        user: userID
     });
     
     if (!foundReview) {
@@ -76,16 +90,17 @@ reviewRoutes.put("/:id", authorize, updateReviewRules, async (req, res) => {
             },
         },
         { new: true }
-    )
+    ).populate("film")
     res.json(updateReview);
 })
 
 
-reviewRoutes.delete("/:id", authorize, async (req, res) => {
+reviewRoutes.delete("/:id", authorize(["admin", "client"]), async (req, res) => {
     const reviewID = req.params.id
+    const userID = req.user._id || req.user.id || req.user.user._id
     const foundReview = await ReviewModel.findOneAndDelete({
         _id: reviewID,
-        user: req.user._id
+        user: userID
     })
     if (!foundReview) {
         return res.status(404).send(`Review not found or you do not have permission to delete it.`);
