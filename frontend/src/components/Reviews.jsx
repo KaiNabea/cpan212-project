@@ -12,6 +12,7 @@ export default function Reviews() {
         rating: 5.0,
         review: ''
     })
+    const [reviewFilmId, setReviewFilmId] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [initialLoadError, setInitialLoadError] = useState(null)
@@ -35,6 +36,7 @@ export default function Reviews() {
                     rating: data.rating,
                     review: data.review
                 })
+                setReviewFilmId(data.film)
             } catch (err) {
                 setInitialLoadError(err.message)
             } finally {
@@ -72,8 +74,8 @@ export default function Reviews() {
             const data = await response.json()
             if (response.ok) {
                 alert(isEditing ? "Review updated successfully!" : "Review posted successfully!")
-                const targetFilmId = isEditing ? data.film : filmId
-                navigate(`/film/${targetFilmId}`) 
+                const targetFilmId = isEditing ? reviewFilmId : filmId
+                navigate(`/films/${targetFilmId}`) 
             } else {
                 setError(data.errorMessage || `Failed to ${isEditing ? 'update' : 'post'} review.`)
             }

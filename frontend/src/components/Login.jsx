@@ -111,8 +111,12 @@ export default function Login() {
         <div className="login-container">
             <div className="login-box">
                 <div className="login-header">
+                    <div className="login-header-h1">
                     <h1>THE BACKLOG - VERIFY OTP</h1>
+                    </div>
+                    <div className="login-header-p">
                     <p>An OTP has been sent to **{email}**. Please check your email.</p>
+                    </div>
                 </div>
                 <div className="login-form">
                     {error && <div className="error-message">{error}</div>}

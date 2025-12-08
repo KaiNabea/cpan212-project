@@ -66,11 +66,15 @@ export default function Films() {
     }
 
     return (
-        <div className="film-detail-container">
+        <div className="film-detail-container" style={
+            {
+                background: "linear-gradient(135deg,  #667eea 0%, #764ba2 100%)"
+            }
+        }>
             <h1>{filmDetails.title}</h1>
-            <p><strong>Genre:</strong> {filmDetails.genre}</p>
-            <p><strong>Release Date:</strong> {filmDetails.release_date}</p>
-            <p><strong>Rating:</strong> {filmDetails.rating}/10</p>
+            <p style={{color: "black"}}><strong style={{color: "black"}}>Genre:</strong> {filmDetails.genre}</p>
+            <p style={{color: "black"}}><strong style={{color: "black"}}>Release Date:</strong> {filmDetails.release_date}</p>
+            <p style={{color: "black"}}><strong style={{color: "black"}}>Rating:</strong> {filmDetails.rating}/10</p>
             
             <div className="film-actions">
                 <button 

@@ -185,14 +185,6 @@ export default function Profile() {
                                 <p>{profileUser.email}</p>
                             </div>
                             <div className="info-item">
-                                <label>Phone:</label>
-                                <p>{profileUser.phone || 'Not provided'}</p>
-                            </div>
-                            <div className="info-item">
-                                <label>Address:</label>
-                                <p>{profileUser.address || 'Not provided'}</p>
-                            </div>
-                            <div className="info-item">
                                 <label>Role:</label>
                                 <p>{profileUser.roles}</p>
                             </div>
