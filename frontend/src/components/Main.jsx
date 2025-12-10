@@ -18,8 +18,8 @@ export default function Main() {
         setLoading(true)
         setError(null)
         const url = appliedSearchTerm
-            ? `http://localhost:3000/films?search=${encodeURIComponent(appliedSearchTerm)}`
-            : 'http://localhost:3000/films'
+            ? `${import.meta.env.VITE_API_URL}/films?search=${encodeURIComponent(appliedSearchTerm)}`
+            : `${import.meta.env.VITE_API_URL}/films`
         try {
             const response = await fetch(url, {
                 method: "GET",

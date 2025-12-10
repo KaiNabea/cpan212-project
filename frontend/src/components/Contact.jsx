@@ -16,7 +16,7 @@ export default function Contact() {
     const fetchMessageHistory = async () => {
         setLoadingHistory(true)
         try {
-            const response = await fetch('http://localhost:3000/contacts', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/contacts`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -57,7 +57,7 @@ export default function Contact() {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/contacts', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/contacts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default function Contact() {
         if (!confirm('Are you sure you want to delete this message?')) return
 
         try {
-            const response = await fetch(`http://localhost:3000/contacts/${messageId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/contacts/${messageId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

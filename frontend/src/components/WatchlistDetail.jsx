@@ -14,7 +14,7 @@ export default function WatchlistDetail() {
         setLoading(true)
         setError(null)
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
                 headers: token ? {
                     "Authorization": `Bearer ${token}`
                 } : []
@@ -40,7 +40,7 @@ export default function WatchlistDetail() {
         if (!confirm('Remove this film from the watchlist?')) return
 
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}/films/remove`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}/films/remove`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

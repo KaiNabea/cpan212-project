@@ -13,7 +13,7 @@ export default function AddToWatchlistModal({ filmId, onClose }) {
             setLoading(true)
             setError(null)
             try {
-                const response = await fetch(`http://localhost:3000/watchlists?userId=${user._id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists?userId=${user._id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -42,7 +42,7 @@ export default function AddToWatchlistModal({ filmId, onClose }) {
     const handleAddToWatchlist = async (watchlistId) => {
         setAdding(true)
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}/films/add`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}/films/add`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

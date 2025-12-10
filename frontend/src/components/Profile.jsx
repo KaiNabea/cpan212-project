@@ -22,7 +22,7 @@ export default function Profile() {
             setError(null)
             try {
                 // Fetch user info
-                const userResponse = await fetch(`http://localhost:3000/users/${id}`, {
+                const userResponse = await fetch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -32,14 +32,14 @@ export default function Profile() {
                 setProfileUser(userData)
 
                 // Fetch user's reviews
-                const reviewsResponse = await fetch(`http://localhost:3000/reviews?userId=${id}`)
+                const reviewsResponse = await fetch(`${import.meta.env.VITE_API_URL}/reviews?userId=${id}`)
                 if (reviewsResponse.ok) {
                     const reviewsData = await reviewsResponse.json()
                     setReviews(reviewsData.data || [])
                 }
 
                 // Fetch user's watchlists
-                const watchlistsResponse = await fetch(`http://localhost:3000/watchlists?userId=${id}`)
+                const watchlistsResponse = await fetch(`${import.meta.env.VITE_API_URL}/watchlists?userId=${id}`)
                 if (watchlistsResponse.ok) {
                     const watchlistsData = await watchlistsResponse.json()
                     setWatchlists(watchlistsData.data || [])
@@ -61,7 +61,7 @@ export default function Profile() {
         if (!confirm('Are you sure you want to delete this review?')) return
 
         try {
-            const response = await fetch(`http://localhost:3000/reviews/${reviewId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/reviews/${reviewId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -84,7 +84,7 @@ export default function Profile() {
         if (!confirm('Are you sure you want to delete this watchlist?')) return
 
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -112,7 +112,7 @@ export default function Profile() {
     }
 
     return (
-        <div className="profile-container" style = {
+        <div className="profile-container" style={
             {
                 background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
             }
@@ -151,19 +151,19 @@ export default function Profile() {
             </div>
 
             <div className="profile-tabs">
-                <button 
+                <button
                     className={activeTab === 'info' ? 'tab-active' : ''}
                     onClick={() => setActiveTab('info')}
                 >
                     Personal Info
                 </button>
-                <button 
+                <button
                     className={activeTab === 'reviews' ? 'tab-active' : ''}
                     onClick={() => setActiveTab('reviews')}
                 >
                     Reviews ({reviews.length})
                 </button>
-                <button 
+                <button
                     className={activeTab === 'watchlists' ? 'tab-active' : ''}
                     onClick={() => setActiveTab('watchlists')}
                 >
@@ -208,7 +208,7 @@ export default function Profile() {
                                 {reviews.map(review => (
                                     <div key={review._id} className="review-card-profile">
                                         <div className="review-header">
-                                            <h3 
+                                            <h3
                                                 onClick={() => navigate(`/films/${review.film._id}`)}
                                                 className="film-title-link"
                                             >
@@ -224,13 +224,13 @@ export default function Profile() {
                                         </p>
                                         {isOwnProfile && (
                                             <div className="review-actions">
-                                                <button 
+                                                <button
                                                     onClick={() => navigate(`/reviews/edit/${review._id}`)}
                                                     className="edit-review-btn"
                                                 >
                                                     Edit
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={() => handleDeleteReview(review._id)}
                                                     className="delete-review-btn"
                                                 >
@@ -257,7 +257,7 @@ export default function Profile() {
                                 {watchlists.map(watchlist => (
                                     <div key={watchlist._id} className="watchlist-card-profile">
                                         <div className="watchlist-header">
-                                            <h3 
+                                            <h3
                                                 onClick={() => navigate(`/watchlists/${watchlist._id}`)}
                                                 className="watchlist-title-link"
                                             >
@@ -284,19 +284,19 @@ export default function Profile() {
                                         </div>
                                         {isOwnProfile && (
                                             <div className="watchlist-actions">
-                                                <button 
+                                                <button
                                                     onClick={() => navigate(`/watchlists/${watchlist._id}`)}
                                                     className="view-watchlist-btn"
                                                 >
                                                     View
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={() => navigate(`/watchlists/edit/${watchlist._id}`)}
                                                     className="edit-watchlist-btn"
                                                 >
                                                     Edit
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={() => handleDeleteWatchlist(watchlist._id)}
                                                     className="delete-watchlist-btn"
                                                 >

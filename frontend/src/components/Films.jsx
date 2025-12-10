@@ -19,12 +19,12 @@ export default function Films() {
         setLoading(true)
         setError(null)
         try {
-            const filmResponse = await fetch(`http://localhost:3000/films/${filmId}`)
+            const filmResponse = await fetch(`${import.meta.env.VITE_API_URL}/films/${filmId}`)
             if (!filmResponse.ok) throw new Error("Film not found.")
             const filmData = await filmResponse.json()
             setFilmDetails(filmData)
 
-            const reviewResponse = await fetch(`http://localhost:3000/reviews?filmId=${filmId}`)
+            const reviewResponse = await fetch(`${import.meta.env.VITE_API_URL}/reviews?filmId=${filmId}`)
             if (!reviewResponse.ok) throw new Error("Failed to fetch reviews.")
             const reviewsData = await reviewResponse.json()
             setReviews(reviewsData.data || [])

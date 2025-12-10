@@ -16,7 +16,7 @@ export default function EditWatchlist() {
         const fetchWatchlist = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`)
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`)
                 if (!response.ok) throw new Error('Watchlist not found.')
                 const data = await response.json()
                 setWatchlistName(data.name)
@@ -45,7 +45,7 @@ export default function EditWatchlist() {
         setError(null)
 
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ export default function Watchlists() {
         setLoading(true)
         setError(null)
         try {
-            const response = await fetch(`http://localhost:3000/watchlists?userId=${user._id}`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists?userId=${user._id}`)
             if (!response.ok) throw new Error('Failed to fetch watchlists.')
             const data = await response.json()
             setWatchlists(data.data || [])
@@ -45,7 +45,7 @@ export default function Watchlists() {
 
         setCreating(true)
         try {
-            const response = await fetch('http://localhost:3000/watchlists', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function Watchlists() {
         if (!confirm('Are you sure you want to delete this watchlist?')) return
 
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

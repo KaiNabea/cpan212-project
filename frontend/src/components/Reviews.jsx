@@ -22,7 +22,7 @@ export default function Reviews() {
             setLoading(true)
             try {
                 if (!token) throw new Error("Authorization required for editing.")
-                const response = await fetch(`http://localhost:3000/reviews/${reviewId}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/reviews/${reviewId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -57,8 +57,8 @@ export default function Reviews() {
         setError(null)
         const method = isEditing ? 'PUT' : 'POST'
         const url = isEditing 
-            ? `http://localhost:3000/reviews/${reviewId}`
-            : `http://localhost:3000/reviews`
+            ? `${import.meta.env.VITE_API_URL}/reviews/${reviewId}`
+            : `${import.meta.env.VITE_API_URL}/reviews`
         const body = isEditing 
             ? reviewData
             : { ...reviewData, film: filmId }
