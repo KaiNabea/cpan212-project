@@ -14,7 +14,11 @@ export default function WatchlistDetail() {
         setLoading(true)
         setError(null)
         try {
-            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`)
+            const response = await fetch(`http://localhost:3000/watchlists/${watchlistId}`, {
+                headers: token ? {
+                    "Authorization": `Bearer ${token}`
+                } : []
+            })
             if (!response.ok) throw new Error('Watchlist not found.')
             const data = await response.json()
             setWatchlist(data)

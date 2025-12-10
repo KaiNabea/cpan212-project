@@ -9,7 +9,7 @@ const { reviewRoutes } = require("./modules/reviews/review-routes")
 const { watchlistRoutes } = require("./modules/watchlist/watchlist-routes")
 const app = express()
 
-const HOST = "localhost"
+const HOST = "0.0.0.0"
 const PORT = 3000
 
 app.use(cors({
