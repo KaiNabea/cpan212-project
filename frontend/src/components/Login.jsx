@@ -18,12 +18,24 @@ export default function Login() {
         setError("")
         setLoading(true)
         try {
+            console.log('Attempting login to:', `${import.meta.env.VITE_API_URL}/users/login`)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
+                credentials: "include", // Add this for CORS
                 body: JSON.stringify({email, password})
             })
-            const data = await response.json()            
+            console.log('Response status:', response.status)
+            console.log('Response ok:', response.ok)
+            const contentType = response.headers.get("content-type")
+            console.log('Content-Type:', contentType)
+            if (!contentType || !contentType.includes("application/json")) {
+                const text = await response.text()
+                console.log('Non-JSON response:', text)
+                throw new Error('Server returned non-JSON response')
+            }
+            const data = await response.json()
+            console.log('Response data:', data)
             if (response.ok) {
                 alert("OTP has been sent to your email. Please verify.")
                 setStep(2)
