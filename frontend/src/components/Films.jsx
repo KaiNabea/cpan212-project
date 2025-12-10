@@ -14,7 +14,6 @@ export default function Films() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [showWatchlistModal, setShowWatchlistModal] = useState(false)
-
     const fetchFilmData = async () => {
         setLoading(true)
         setError(null)
@@ -23,12 +22,10 @@ export default function Films() {
             if (!filmResponse.ok) throw new Error("Film not found.")
             const filmData = await filmResponse.json()
             setFilmDetails(filmData)
-
             const reviewResponse = await fetch(`${import.meta.env.VITE_API_URL}/reviews?filmId=${filmId}`)
             if (!reviewResponse.ok) throw new Error("Failed to fetch reviews.")
             const reviewsData = await reviewResponse.json()
             setReviews(reviewsData.data || [])
-
             if (user && reviewsData.data) {
                 const existingReview = reviewsData.data.find(
                     review => review.user._id === user._id
@@ -42,7 +39,6 @@ export default function Films() {
             setLoading(false)
         }
     }
-
     useEffect(() => {
         if (filmId) {
             fetchFilmData()
@@ -56,15 +52,12 @@ export default function Films() {
             navigate(`/reviews/new/${filmId}`)
         }
     }
-
     if (loading) {
         return <div className="loading">Loading film and review details...</div>
     }
-
     if (error || !filmDetails) {
         return <div className="error">{error}</div>
     }
-
     return (
         <div className="film-detail-container" style={
             {
@@ -75,7 +68,6 @@ export default function Films() {
             <p style={{color: "black"}}><strong style={{color: "black"}}>Genre:</strong> {filmDetails.genre}</p>
             <p style={{color: "black"}}><strong style={{color: "black"}}>Release Date:</strong> {filmDetails.release_date}</p>
             <p style={{color: "black"}}><strong style={{color: "black"}}>Rating:</strong> {filmDetails.rating}/10</p>
-            
             <div className="film-actions">
                 <button 
                     onClick={handleReviewButtonClick}
@@ -91,7 +83,6 @@ export default function Films() {
                     + Add to Watchlist
                 </button>
             </div>
-
             <h2>Reviews ({reviews.length})</h2>
             <div className="reviews-list">
                 {reviews.length > 0 ? (
@@ -107,7 +98,6 @@ export default function Films() {
                     <p>No reviews yet. Be the first to post!</p>
                 )}
             </div>
-
             {showWatchlistModal && (
                 <AddToWatchlistModal 
                     filmId={filmId}

@@ -32,11 +32,11 @@ usersRoute.post("/login", loginRules, async (req, res) => {
   }
   const otpCode = randomNumberOfNDigits(6)
   console.log("OTP:", otpCode)
-  await OTPModel.findOneAndUpdate(
-    {account: foundUser._id},
-    {otp: otpCode},
-    {upsert: true, new: true}
-  )
+  await OTPModel.deleteOne({ account: foundUser._id})
+  await OTPModel.create({
+    account: foundUser._id,
+    otp: otpCode
+  })
   await sendEmail(
     email,
     "Your Login OTP",

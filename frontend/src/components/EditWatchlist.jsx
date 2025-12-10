@@ -11,12 +11,15 @@ export default function EditWatchlist() {
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState(null)
-
     useEffect(() => {
         const fetchWatchlist = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`)
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
+                    headers: token ? {
+                        "Authorization": `Bearer ${token}`
+                    } : {}
+                })
                 if (!response.ok) throw new Error('Watchlist not found.')
                 const data = await response.json()
                 setWatchlistName(data.name)
