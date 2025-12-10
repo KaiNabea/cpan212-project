@@ -15,7 +15,7 @@ const PORT = 3000
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://your-frontend-app.vercel.app'
+  'https://cpan212-project.vercel.app'
 ];
 
 app.use(cors({
