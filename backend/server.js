@@ -13,7 +13,7 @@ const HOST = "0.0.0.0"
 const PORT = 3000
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "http://cpan212-project.vercel.app/",
   credentials: true
 }))
 
