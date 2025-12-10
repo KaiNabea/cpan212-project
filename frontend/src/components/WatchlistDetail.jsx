@@ -17,7 +17,7 @@ export default function WatchlistDetail() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/watchlists/${watchlistId}`, {
                 headers: token ? {
                     "Authorization": `Bearer ${token}`
-                } : []
+                } : {}
             })
             if (!response.ok) throw new Error('Watchlist not found.')
             const data = await response.json()
