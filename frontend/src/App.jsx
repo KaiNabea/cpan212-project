@@ -16,6 +16,7 @@ import './App.css'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import {AuthProvider, useAuth} from "./components/AuthContext.jsx"
 import "./contrast-fixes.css"
+import { Navigate } from 'react-router-dom'
 
 function NavigationContent() {
   const location = useLocation()
