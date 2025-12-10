@@ -7,7 +7,7 @@ const OTPSchema = new mongoose.Schema({
     required: true,
   },
   otp: { type: mongoose.Schema.Types.Number, required: true },
-  createdAt: { type: Date, default: Date.now(), expires: 60 * 5 },
+  createdAt: { type: Date, default: Date.now, expires: 60 * 5 },
 });
 
 const OTPModel = mongoose.model("OTPModel", OTPSchema);
