@@ -13,6 +13,7 @@ export default function Login() {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const handleLoginStep = async (e) => {
+        console.log("API URL:", import.meta.env.VITE_API_URL)
         e.preventDefault()
         setError("")
         setLoading(true)
