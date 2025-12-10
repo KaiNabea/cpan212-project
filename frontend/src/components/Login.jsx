@@ -22,7 +22,7 @@ export default function Login() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                credentials: "include", // Add this for CORS
+                credentials: "include",
                 body: JSON.stringify({email, password})
             })
             console.log('Response status:', response.status)
