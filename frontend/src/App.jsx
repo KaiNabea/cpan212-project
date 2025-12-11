@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Routes, BrowserRouter, useLocation} from "react-router-dom"
+import {Route, Routes, BrowserRouter, useLocation, Navigate} from "react-router-dom"
 import NavBar from "./components/NavBar.jsx"
 import Main from "./components/Main.jsx"
 import Films from "./components/Films.jsx"
@@ -16,7 +16,6 @@ import './App.css'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import {AuthProvider, useAuth} from "./components/AuthContext.jsx"
 import "./contrast-fixes.css"
-import { Navigate } from 'react-router-dom'
 
 function NavigationContent() {
   const location = useLocation()
